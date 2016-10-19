@@ -1,0 +1,28 @@
+<div class="col-xs-3">
+    <div class="panel panel-primary text-center">
+        <div class="panel-heading">
+            <p class="text-center">{{$ctrl.product.title}}</p>
+        </div>
+        <img class="img-thumbnail img-circle" style="max-height:195px;" width="75%"
+             ng-src="{{$ctrl.parseImage($ctrl.product.image)}}">
+        <div class="panel-body" ng-if="!$ctrl.deleteTrigger">
+            <p class="text-left">
+                <span class="text-muted">Price:</span>
+                {{$ctrl.product.price | currency}}
+            </p>
+            <p class="text-left">
+                <span class="text-muted">Description:</span>
+                {{$ctrl.product.description}}
+            </p>
+            <div class="text-center">
+                <button class="btn btn-primary" ui-sref="edit({id:$ctrl.product.id})">Edit</button>
+                <button ng-click="$ctrl.deleteTrigger = true" class=" btn btn-danger">Delete</button>
+            </div>
+        </div>
+        <div class="panel-body" ng-if="$ctrl.deleteTrigger">
+            <h4>Are you sure you want to delete this item?</h4>
+            <button class="btn btn-danger" ng-click="$ctrl.deleteItem($ctrl.product)">Confirm</button>
+            <button class="btn btn-primary" ng-click="$ctrl.deleteTrigger = false">Cancel</button>
+        </div>
+    </div>
+</div>

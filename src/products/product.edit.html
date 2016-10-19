@@ -1,0 +1,31 @@
+<div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <div class="text-center">
+                <img style="max-height:225px;" class="img-thumbnail img-circle" width="25%" ng-src="{{vm.parseImage(vm.editProduct.image)}}">
+            </div>
+            <form name="editForm">
+                  <div class="form-group">
+                    <label for="title">Product title:</label>
+                    <label class="pull-right text-danger" ng-show="editForm.$submitted && editForm.title.$error.required">Title is required</label>
+                    <input required type="text" class="form-control" name="title" id="title" ng-model="vm.editProduct.title">
+                  </div>
+                  <div class="form-group">
+                    <label for="price">Product price:</label>
+                    <label class="pull-right text-danger" ng-show="editForm.$submitted && editForm.price.$error.required">Price is required</label>
+                    <input required type="text" name="price" class="form-control" id="price" ng-model="vm.editProduct.price">
+                  </div>
+                  <div class="form-group">
+                    <label for="descr">Product description:</label>
+                    <label class="pull-right"></label>
+                    <textarea class="form-control" id="descr" ng-model="vm.editProduct.description">
+                    </textarea>
+                  </div>
+                <div class="text-center">
+                  <button ui-sref="products" class="btn btn-default">Cancel</button>
+                  <button ng-click="vm.saveChanges(editForm)" type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
