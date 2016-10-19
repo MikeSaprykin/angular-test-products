@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-xs-12 text-center">
             <h3>List of products</h3>
-        <product-item ng-repeat="productItem in vm.productsList" product="productItem"></product-item>
+        <product-item ng-repeat="productItem in vm.productsList track by $index" product="productItem"></product-item>
         </div>
     </div>
-    <div class="row text-center">
+   <!-- <div class="row text-center">
         <paginator length="7"></paginator>
-    </div>
+    </div> -->
 </div>

@@ -2,10 +2,9 @@
  * Created by Mike on 19.10.16.
  */
 import ProductsValues from '../services/products.values'
-import ProductService from '../services/product.service'
 
 export default class ProductItemController {
-    constructor(){
+    constructor(ProductService){
         this.parseImage = (val) => {
             return ProductsValues.images[val]
           };
@@ -15,7 +14,8 @@ export default class ProductItemController {
                 if(obj.id === item.id){
                     ProductsValues.products.splice(index,1)
                 }
-            })
+                ProductService.setProducts(ProductsValues.products)
+            });
         }
     }
 }

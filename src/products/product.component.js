@@ -12,6 +12,8 @@ let productItem = {
         }
 };
 
+productItem.$inject = ['ProductService','ProductsValues'];
+
 export default productItem;
 
 

@@ -8,6 +8,8 @@ import ProductsController from './products/products.controller';
 import PaginatorComponent from './paginator/paginator.component';
 import ProductEditController from './products/product.edit.controller';
 import ProductAddController from './products/product.add.controller';
+import ProductService from './services/product.service';
+import ProductsValues from './services/products.values';
 
 let app = angular.module('demo', ['ui.router']);
 
@@ -52,10 +54,19 @@ app.config(['$urlRouterProvider', '$locationProvider','$stateProvider', function
           }
       })
 }]);
+app.run(run);
+
+app.value('ProductsValues',ProductsValues);
+app.service('ProductService',ProductService);
 
 app.component(ProductItem.selector,ProductItem);
 
 app.component(PaginatorComponent.selector,PaginatorComponent);
+
+run.$inject = ['ProductService','ProductsValues'];
+function run (ProductService,ProductsValues){
+    ProductService.init()
+}
 
 angular.element(document).ready(function() {
   angular.bootstrap(document.body, [ app.name ]);

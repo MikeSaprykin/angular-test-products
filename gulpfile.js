@@ -1,6 +1,5 @@
 var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var historyApiFallback = require('connect-history-api-fallback');
+var browserSync = require('browser-sync').create();
 const babel = require('gulp-babel');
 
 module.exports = {
@@ -12,9 +11,13 @@ module.exports = {
   compact: false
 };
 
+gulp.task('reload',function(){
+  browserSync.reload()
+});
+
 gulp.task('watch', function(){
-  gulp.watch('src/**/*.js',['es6',browserSync.reload()]);
-  gulp.watch('src/**/*.html',browserSync.reload());
+  gulp.watch('src/**/*.js',['es6','reload']);
+  gulp.watch('src/**/*.html',['reload']);
 });
 
 gulp.task('es6', function () {
@@ -27,11 +30,11 @@ gulp.task('es6', function () {
     .pipe(gulp.dest('dist/'))
 });
 
-gulp.task('serve', ['es6','watch'], function (done) {
-  browserSync({
-    port: 8080,
+gulp.task('serve', ['watch'], function () {
+  browserSync.init({
+    port: 9000,
     server: {
-        baseDir: "./"
+      baseDir: "./"
     },
-  }, done);
+  });
 });

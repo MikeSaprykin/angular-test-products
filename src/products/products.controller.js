@@ -5,7 +5,7 @@
 import ProductsValues from '../services/products.values'
 
 export default class ProductsController {
-    constructor(){
+    constructor(ProductsValues){
         this.productsList = ProductsValues.products;
     }
 }

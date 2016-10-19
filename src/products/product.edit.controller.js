@@ -1,10 +1,12 @@
 /**
  * Created by Mike on 19.10.16.
  */
-import ProductsValues from '../services/products.values'
 
-export default class ProductEditController {
-    constructor($scope,$state){
+import ProductsValues from '../services/products.values'
+import ProductService from '../services/product.service'
+
+class ProductEditController {
+    constructor($scope,$state,ProductsValues,ProductService){
         let _self = this;
 
         this.product = {};
@@ -17,12 +19,11 @@ export default class ProductEditController {
         });
         angular.copy(this.product,this.editProduct);
 
-        console.log(this.editProduct);
-
         this.saveChanges = (form) => {
             if(form.$valid){
                 angular.copy(this.editProduct,this.product);
                 form.$setPristine();
+                ProductService.setProducts(ProductsValues.products);
                 $state.go('products')
             }
         };
@@ -32,3 +33,5 @@ export default class ProductEditController {
           }
     }
 }
+
+export default ProductEditController
